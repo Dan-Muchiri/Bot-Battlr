@@ -1,22 +1,26 @@
 import React from 'react';
 import { ChakraProvider, Flex } from '@chakra-ui/react';
 import BotCollection from './components/BotCollection';
-import YourBotArmy from './components/YourBotArmy';
-import useBotStore from './components/store'; 
+import YourBotArmy from './components/YourBotArmy'; 
 import Header from './components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BotSpecs from './components/BotSpecs';
 
 function App() {
 
-  const { selectedBots, addBot, removeBot } = useBotStore();
-
   return (
-    <ChakraProvider>
-      <Header />
-      <Flex w='100%'>
-        <BotCollection onBotSelect={addBot} />
-        <YourBotArmy selectedBots={selectedBots} onReleaseBot={removeBot} />
-      </Flex>
-    </ChakraProvider>
+    <Router>
+      <ChakraProvider>
+        <Header />
+        <Flex w='100%'>
+          <Routes>
+            <Route path='/' element={<BotCollection />} />
+            <Route path='/specs/:id' element={<BotSpecs />} />
+          </Routes>
+          <YourBotArmy />
+        </Flex>
+      </ChakraProvider>
+    </Router>
   );
 }
 

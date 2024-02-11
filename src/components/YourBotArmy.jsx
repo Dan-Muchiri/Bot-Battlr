@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, Text, Image, Button } from '@chakra-ui/react';
 import useBotStore from './store'; 
 
-const YourBotArmy = ({ selectedBots }) => {
-  const { removeSelectedBot } = useBotStore();
+const YourBotArmy = () => {
+  const { removeSelectedBot, selectedBots } = useBotStore();
 
   const handleReleaseClick = (bot) => {
     removeSelectedBot(bot.id)};
